@@ -24,6 +24,7 @@ ext {
 	 */
 	// Feign
 	set('springCloudVersion','2021.0.5')
+	set('commonsLangVersion','3.12.0')
 }
 // Feign
 dependencyManagement {
@@ -40,6 +41,10 @@ dependencies {
 
 	// Feign
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+	// for 'StringUtils'
+	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+	implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
 
 	// module간 의존성 설정
 	// root의 settings.gradle에 선언한 값과 동일
