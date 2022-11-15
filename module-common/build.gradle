@@ -1,8 +1,8 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '2.7.5'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-	id 'java-library' // api 키워드 사용하기 위해 추가
+    id 'java'
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'java-library' // api 키워드 사용하기 위해 추가
 }
 
 group = 'dev.be'
@@ -10,25 +10,36 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	api 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'mysql:mysql-connector-java'
+    api 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'mysql:mysql-connector-java'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
+
+// 실행 가능한 jar 파일 생성 불필요
+tasks.bootJar { enabled = false }
+// xxx-plain.jar 로 생성
+// plain 옵션이 있으면 오직 java 파일만 빌드됨
+tasks.jar { enabled = true }
+
+// clean 기존 빌드 모듈 삭제
+// module-api:buildNeeded 어떤 모듈 빌드
+// -x test : 테스트 제외
+// ./gradlew clean :module-api:buildNeeded --stacktrace --info --refresh-dependencies -x test
