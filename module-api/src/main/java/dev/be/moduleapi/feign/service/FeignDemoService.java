@@ -33,4 +33,10 @@ public class FeignDemoService {
     }
 
 
+    public String errorDecoder() {
+
+        feignClient.callError();
+
+        return "error";
+    }
 }

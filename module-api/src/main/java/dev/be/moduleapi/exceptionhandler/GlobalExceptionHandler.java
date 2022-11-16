@@ -4,9 +4,8 @@ import dev.be.moduleapi.exception.CustomException;
 import dev.be.moduleapi.response.CommonResponse;
 import dev.be.modulecommon.enums.CodeEnum;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@RestControllerAdvice
+// @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(CustomException.class)

@@ -20,4 +20,9 @@ public class FeignDemoController {
     public String postController() {
         return feignDemoService.post();
     }
+
+    @GetMapping("/error")
+    public String errorController() {
+        return feignDemoService.errorDecoder();
+    }
 }

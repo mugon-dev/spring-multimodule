@@ -26,6 +26,5 @@ public class DemoFeignInterceptor implements RequestInterceptor {
         String convertRequestBody = encodedRequestBody;
 
         template.body(convertRequestBody);
-
     }
 }
