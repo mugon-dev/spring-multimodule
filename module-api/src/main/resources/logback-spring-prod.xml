@@ -89,6 +89,23 @@
       <outputPatternAsHeader>true</outputPatternAsHeader> <!-- 파일 처음부분에 어떤 형식으로 로그 생성하는지 나타냄 -->
     </encoder>
   </appender>
+
+<appender name="QUERY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_DIR}/query.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_DIR}/archive/query.%d{yyy-MM-dd}_%i.log
+      </fileNamePattern><!-- 로그파일 이름 규칙 -->
+      <maxFileSize>10KB</maxFileSize><!-- 로그파일 최대 크기 -->
+      <maxHistory>30</maxHistory><!-- 로그파일 최대 보관주기(단위:일) -->
+    </rollingPolicy>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>
+        [QUERY] ${LOG_PATTERN}
+      </pattern>
+      <outputPatternAsHeader>true</outputPatternAsHeader> <!-- 파일 처음부분에 어떤 형식으로 로그 생성하는지 나타냄 -->
+    </encoder>
+  </appender>
+
   <root level="INFO">
     <!--    <appender-ref ref="REQUEST1"/>-->
     <!--    <appender-ref ref="REQUEST2"/>-->
@@ -96,4 +113,12 @@
     <appender-ref ref="ERROR"/>
     <appender-ref ref="WARN"/>
   </root>
+
+  <!-- additivitty 다른 logger를 상속 받을 것인지 -->
+  <logger name="SQL_LOG1" level="INFO" additivitty="false">
+    <appender-ref ref="QUERY"/>
+  </logger>
+  <logger name="SQL_LOG2" level="INFO" additivitty="false">
+    <appender-ref ref="QUERY"/>
+  </logger>
 </included>
