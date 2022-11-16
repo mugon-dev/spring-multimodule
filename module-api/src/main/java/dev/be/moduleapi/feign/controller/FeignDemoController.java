@@ -16,4 +16,8 @@ public class FeignDemoController {
         return feignDemoService.get();
     }
 
+    @GetMapping("/post")
+    public String postController() {
+        return feignDemoService.post();
+    }
 }
